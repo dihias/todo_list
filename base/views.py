@@ -9,3 +9,5 @@ from .models import Task
 class TaskList(ListView):
    model = Task
 
+   # to replace "object_list" with "tasks" in the template
+   context_object_name = 'tasks'
