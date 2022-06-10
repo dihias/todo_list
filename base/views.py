@@ -1,10 +1,12 @@
 import imp
 from django.shortcuts import render
-from django.http import HttpResponse
 
+from django.views.generic.detail import DetailView
+from .models import Task
 # Create your views here.
- 
-#creating asimple funtional view to test my app
-def tasklist(request):
-    return HttpResponse('to do list')
 
+class TaskDetail(DetailView):
+    model = Task
+
+    #edit the template name from the default task_detail to task
+    template_name = 'base/task.html'
