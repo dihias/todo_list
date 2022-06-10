@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #connect our app base tothe project todolist
+    #connect our app base to the project todolist
     "base.apps.BaseConfig",
 ]
 
