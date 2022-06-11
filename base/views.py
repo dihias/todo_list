@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 
 from .models import Task
+from django.urls import reverse_lazy
 
 from django.views.generic.detail import DetailView
-from .models import Task
+from django.views.generic.edit import UpdateView
+
 # Create your views here.
 
 class TaskDetail(DetailView):
@@ -19,3 +21,9 @@ class TaskList(ListView):
 
    # to replace "object_list" with "tasks" in the template
    context_object_name = 'tasks'
+
+
+class TaskUpdate(UpdateView):
+    model = Task 
+    fields: '__all__'
+    success_url = reverse_lazy('tasks')
