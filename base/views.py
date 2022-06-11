@@ -5,12 +5,12 @@ from .models import Task
 from django.urls import reverse_lazy
 
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 #to redirect to some pageor some part of a page
 from django.urls import reverse_lazy
 
-from django.views.generic.edit import UpdateView
+
 
 # Create your views here.
 
@@ -41,4 +41,10 @@ class TaskCreate(CreateView):
 class TaskUpdate(UpdateView):
     model = Task 
     fields= '__all__'
+    success_url = reverse_lazy('tasks')
+
+
+class TaskDelete(DeleteView):
+    model = Task 
+    context_object_name = 'task'
     success_url = reverse_lazy('tasks')
