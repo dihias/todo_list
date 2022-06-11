@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 
 from .models import Task
+from django.urls import reverse_lazy
 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -9,6 +10,7 @@ from django.views.generic.edit import CreateView
 #to redirect to some pageor some part of a page
 from django.urls import reverse_lazy
 
+from django.views.generic.edit import UpdateView
 
 # Create your views here.
 
@@ -36,4 +38,7 @@ class TaskCreate(CreateView):
     fields = '__all__'
 
     #we put the url name as an attribute, so it redirects to that url
+class TaskUpdate(UpdateView):
+    model = Task 
+    fields= '__all__'
     success_url = reverse_lazy('tasks')
