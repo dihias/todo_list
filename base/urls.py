@@ -1,10 +1,6 @@
 from django.urls import path
 
-#import my views , . because they are in the same file structure 
-from .views import TaskDetail
-
-#import my view tasklist this way because it's a class 
-from .views import TaskList
+from .views import TaskList, TaskCreate,TaskDetail
 
 urlpatterns = [
 
@@ -17,4 +13,5 @@ path('task/<int:pk>/',TaskDetail.as_view(),name = "task"),
 #for the 2nd argument we can't use a class directly, so we calla function inside the class 
 #the 3rd argument is the name of the view in the url 'url pattern'
     path('',TaskList.as_view(), name="tasks"),
+    path('task-create',TaskCreate.as_view(), name="task-create"),
 ]

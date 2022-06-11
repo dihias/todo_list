@@ -1,0 +1,12 @@
+<h3>Task form</h3>
+
+<form method="POST" action="">
+
+    <!-- for security -->
+    {%csrf_token%}
+
+    <!-- display django default form-->
+    {{form.as_p}}
+
+    <input type="submit" value="Submit">
+</form>
