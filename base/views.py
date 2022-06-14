@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render
 from django.views.generic.list import ListView
 
@@ -6,6 +7,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.views import LoginView
 
 #to redirect to some pageor some part of a page
 from django.urls import reverse_lazy
@@ -13,6 +15,16 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
+
+class CustomLoginView(LoginView):
+    template_name = 'base/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('tasks')
+
+
 
 class TaskDetail(DetailView):
     model = Task
