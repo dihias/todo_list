@@ -1,4 +1,3 @@
-import imp
 from django.shortcuts import render
 from django.views.generic.list import ListView
 
@@ -12,7 +11,7 @@ from django.contrib.auth.views import LoginView
 #to redirect to some pageor some part of a page
 from django.urls import reverse_lazy
 
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -26,14 +25,14 @@ class CustomLoginView(LoginView):
 
 
 
-class TaskDetail(DetailView):
+class TaskDetail(LoginRequiredMixin,DetailView):
     model = Task
 
     #edit the template name from the default task_detail to task
     template_name = 'base/task.html'
  
 #creating the list view as a class
-class TaskList(ListView):
+class TaskList(LoginRequiredMixin,ListView):
    model = Task
 
    # to replace "object_list" with "tasks" in the template
@@ -41,7 +40,7 @@ class TaskList(ListView):
 
 
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin,CreateView):
     model = Task
     #the form is created by default by createview, we just have to set up the field
     #we could choose some items in the field : field= ['title', 'description']
@@ -50,13 +49,13 @@ class TaskCreate(CreateView):
     fields = '__all__'
 
     #we put the url name as an attribute, so it redirects to that url
-class TaskUpdate(UpdateView):
+class TaskUpdate(LoginRequiredMixin,UpdateView):
     model = Task 
     fields= '__all__'
     success_url = reverse_lazy('tasks')
 
 
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin,DeleteView):
     model = Task 
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
